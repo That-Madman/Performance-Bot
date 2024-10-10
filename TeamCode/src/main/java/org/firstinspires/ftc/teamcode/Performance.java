@@ -6,8 +6,10 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
 
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
-public class perform {
+
+public class Performance {
 	private final DcMotor[] drivebase = {null, null, null, null};
 
 	private IMU imu = null;
@@ -29,8 +31,8 @@ public class perform {
 		imu.initialize(
 				new IMU.Parameters(
 					new RevHubOrientationOnRobot(
-						null,
-						null
+							RevHubOrientationOnRobot.LogoFacingDirection.FORWARD,
+							RevHubOrientationOnRobot.UsbFacingDirection.UP
 					)
 				)
 			);
