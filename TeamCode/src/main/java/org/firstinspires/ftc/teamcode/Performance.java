@@ -27,7 +27,6 @@ public class Performance {
 
 		imu = hwMap.get(IMU.class, "imu");
 
-		//TODO: find what these are
 		imu.initialize(
 				new IMU.Parameters(
 					new RevHubOrientationOnRobot(

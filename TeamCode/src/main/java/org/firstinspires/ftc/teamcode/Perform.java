@@ -7,6 +7,9 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 public class Perform extends OpMode {
 	Performance perf = new Performance();
 
+	boolean fieldRel = false;
+	boolean aHeld = false;
+
 	@Override
 	public void init() {
 		perf.init(hardwareMap);
@@ -14,10 +17,24 @@ public class Perform extends OpMode {
 
 	@Override
 	public void loop() {
-		perf.driveFieldRelative(
-				-gamepad1.left_stick_y,
-				gamepad1.left_stick_x,
-				gamepad1.right_stick_x
-		);
+		if (gamepad1.a && aHeld) {
+			fieldRel = !fieldRel;
+		}
+
+		if (fieldRel) {
+			perf.driveFieldRelative(
+					-gamepad1.left_stick_y,
+					gamepad1.left_stick_x,
+					gamepad1.right_stick_x
+			);
+		} else {
+			perf.drive(
+					-gamepad1.left_stick_y,
+					gamepad1.left_stick_x,
+					gamepad1.right_stick_x
+			);
+		}
+
+		aHeld = gamepad1.a;
 	}
 }
