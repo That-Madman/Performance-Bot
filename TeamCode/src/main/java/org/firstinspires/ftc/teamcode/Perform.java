@@ -17,7 +17,7 @@ public class Perform extends OpMode {
 
 	@Override
 	public void loop() {
-		if (gamepad1.a && aHeld) {
+		if (gamepad1.a && !aHeld) {
 			fieldRel = !fieldRel;
 		}
 
@@ -34,6 +34,8 @@ public class Perform extends OpMode {
 					gamepad1.right_stick_x
 			);
 		}
+
+		telemetry.addData("True North is: ", fieldRel);
 
 		aHeld = gamepad1.a;
 	}
