@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-@TeleOp
+@TeleOp (name = "Showtime!")
 public class Perform extends OpMode {
 	Performance perf = new Performance();
 
