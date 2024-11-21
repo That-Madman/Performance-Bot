@@ -66,16 +66,16 @@ public class Performance {
 
 	public void drive(double forward, double right, double rotate) {
 		double flp = forward + right + rotate;
-		double frp = forward + right - rotate;
+		double frp = forward - right - rotate;
 		double blp = forward - right + rotate;
-		double brp = forward - right - rotate;
+		double brp = forward + right - rotate;
 
 		setPowers(flp, frp, blp, brp);
 	}
 	
 	public void driveFieldRelative (double forward, double right, double rotate) {
 		double theta = Math.atan2(forward, right);
-		double r = Math.hypot(forward, right);
+		final double r = Math.hypot(forward, right);
 
 		theta = AngleUnit.normalizeRadians(theta - getAngle());
 
