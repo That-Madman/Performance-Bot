@@ -5,20 +5,28 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 @TeleOp (name = "Showtime!")
 public class Perform extends OpMode {
-	Performance perf = new Performance();
+	private Performance perf;
 
-	boolean fieldRel = false;
-	boolean aHeld = false;
+	private boolean fieldRel;
+	private boolean aHeld;
+	private boolean yHeld;
+
+	private byte resetTimes;
 
 	@Override
-	public void init() {
-		perf.init(hardwareMap);
+	public void init () {
+		perf = new Performance (hardwareMap);
 	}
 
 	@Override
 	public void loop() {
 		if (gamepad1.a && !aHeld) {
 			fieldRel = !fieldRel;
+		}
+
+		if (gamepad1.y && !yHeld) {
+			perf.resetAngle();
+			++resetTimes;
 		}
 
 		if (fieldRel) {
@@ -36,7 +44,11 @@ public class Perform extends OpMode {
 		}
 
 		telemetry.addData("True North is: ", fieldRel);
+		if (0 != resetTimes) {
+			telemetry.addData("Reset IMU times", resetTimes);
+		}
 
 		aHeld = gamepad1.a;
+		yHeld = gamepad1.y;
 	}
 }

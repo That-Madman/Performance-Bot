@@ -12,9 +12,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 public class Performance {
 	private final DcMotor[] drivebase = {null, null, null, null};
 
-	private IMU imu = null;
+	private final IMU imu;
 
-	public void init(HardwareMap hwMap) {
+	public Performance (HardwareMap hwMap) {
 		drivebase[0] = hwMap.get(DcMotor.class, "fl");
 		drivebase[1] = hwMap.get(DcMotor.class, "fr");
 		drivebase[2] = hwMap.get(DcMotor.class, "br");
@@ -37,8 +37,12 @@ public class Performance {
 			);
 	}
 
-	public double getAngle() {
+	public double getAngle () {
 		return imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
+	}
+
+	public void resetAngle () {
+		imu.resetYaw();
 	}
 
 	private void setPowers(double flp, double frp, double blp, double brp) {
